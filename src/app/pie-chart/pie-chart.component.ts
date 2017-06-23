@@ -14,6 +14,7 @@ export class PieChartComponent implements OnInit {
   @Input() height: string;
   @Input() title: string;
   @Input() is3d: boolean;
+  @Input() pieHole: number;
   @Input() data: any[];
 
   constructor() { }
@@ -27,10 +28,11 @@ export class PieChartComponent implements OnInit {
 
       var options = {
         title: this.title,
-        is3D: this.is3d
+        is3D: this.is3d,
+        pieHole: this.pieHole
       };
 
-      var chart = new google.visualization.PieChart(document.getElementById("pieChart"));
+      var chart = new google.visualization.PieChart(this.pieChartElement.nativeElement);
       chart.draw(pieChartData, options);
     });
   }
