@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  pieChartData = [
+    ['Task', 'Hours'],
+    ['Eat', 2],
+    ['Sleep', 8],
+    ['Code', 12],
+    ['Commute', 3]
+  ];
 }
