@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 declare var google: any;
-declare var visualization: any;
 
 @Component({
   selector: 'pie-chart',
@@ -23,23 +22,16 @@ export class PieChartComponent implements OnInit {
 
   ngAfterViewInit() {
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawPieChart);
-    function drawPieChart() {
-      var pieChartData = google.visualization.arrayToDataTable([
-        ['Task', 'Hours'],
-        ['Eat', 2],
-        ['Sleep', 8],
-        ['Code', 12],
-        ['Commute', 3]
-      ]);
+    google.charts.setOnLoadCallback(() => {
+      var pieChartData = google.visualization.arrayToDataTable(this.data);
 
       var options = {
-        title: "Angular Pie Chart",
-        is3D: false
+        title: this.title,
+        is3D: this.is3d
       };
 
       var chart = new google.visualization.PieChart(document.getElementById("pieChart"));
       chart.draw(pieChartData, options);
-    }
+    });
   }
 }
